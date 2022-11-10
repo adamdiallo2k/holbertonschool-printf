@@ -59,7 +59,8 @@ int veriformat(const char * const format)
 
 int _printf(const char * const format, ...)
 {
-	int i = 0, y = 0, lenght = veriformat(format);
+	int y,i;
+	int lenght = veriformat(format);
 	st_t stu[] = {
 		{"c", print_char},
 		{"s", print_chare},
@@ -68,57 +69,50 @@ int _printf(const char * const format, ...)
 
 	va_list parametersInfos;
 
+	if (format == NULL || (format[0] == '%' && !format[1]))
+		return (-1);
+
 	va_start(parametersInfos, format);
 
-	while (format != NULL && format[i] != '\0')
-	{
-	
-			
-		 if (format[i] == '%')
+	for (i = 0;format[i] != '\0'; i++)
+	{	
+		if (format[i] == '%' && format[i + 1] == '%')
 		{
-		 
-			if (format[i] == '%' && !format[i + 1])
+			putchar(format[i]);
+			lenght++;
+			i++;
+			continue;
+		}	
+
+		if (format[i] == '%') {
+			for (y = 0; stu[y].s; y++)
 			{
-				return (-1);
-			}
-
-			while (stu[y].s)
-			{
-
-
 				if (*stu[y].s ==  format[i + 1])
 				{
 					lenght = lenght + stu[y].f(parametersInfos);
 					i++;
 					break;
 				}	
-				
-				else if (format[i + 1] == '%')
-				{
-					putchar(format[i + 1]);
-					i++;
-					lenght++;
-					break;
-				}	
-				else if (*stu[y].s == '0')
-				{
-					putchar(format[i]);
-					putchar(format[i + 1]);
-					i++;
-					lenght +=2;
-					break;
-				}	
-				y++;
+			}
+
+			if (*stu[y].s == '0')
+			{
+				putchar(format[i]);
+				putchar(format[i + 1]);
+				lenght +=2;
+				i++;
+				break;
 			}
 		}
-		 
 		else  
 		{
 			putchar(format[i]);
 			lenght++;
+			i++;
 		}
-		i++;
+		
 	}
+	va_end(parametersInfos);
 	return (lenght);
 }
 
