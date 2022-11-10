@@ -63,6 +63,7 @@ int _printf(const char * const format, ...)
 	st_t stu[] = {
 		{"c", print_char},
 		{"s", print_chare},
+		{"0", NULL},
 	};
 
 	va_list parametersInfos;
@@ -81,13 +82,24 @@ int _printf(const char * const format, ...)
 				{
 					lenght = lenght + stu[y].f(parametersInfos);
 					i++;
-				}
+				}	
+				
 				else if (format[i + 1] == '%')
 				{
 					putchar(format[i + 1]);
-					lenght++;
 					i++;
-				}
+					lenght++;
+				}	
+				else if (*stu[y].s == '0')
+				{
+					putchar(format[i]);
+					putchar(format[i + 1]);
+					i++;
+					lenght += 2;
+					}
+			
+				
+					
 				y++;
 			}
 		}
