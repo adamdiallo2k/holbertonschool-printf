@@ -11,4 +11,5 @@ typedef struct st
 int _printf(const char *format, ...);
 int print_chare(va_list c);
 int print_char(va_list c);
+int veriformat(const char * const format);
 #endif

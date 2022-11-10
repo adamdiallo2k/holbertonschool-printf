@@ -12,20 +12,20 @@
  */
 int print_chare(va_list c)
 {
-	int lenght = 0;
+	int count = 0;
 	int i = 0;
 	char *r = va_arg(c, char *);
 
 	if (r == NULL)
-		r = "(nil)";
+		r = "(null)";
 
 	while (r[i] != '\0')
 	{
-		lenght++;
+		count++;
 		putchar(r[i]);
 		i++;
 	}
-	return (lenght);
+	return (count);
 }
 
 /**
@@ -43,6 +43,13 @@ int print_char(va_list c)
 	return (1);
 }
 
+int veriformat(const char * const format)
+{
+	if (format == NULL)
+		return (-1);
+	return (0);
+}
+
 /**
  * _printf - Entry point
  * Description: 'return division'
@@ -52,17 +59,17 @@ int print_char(va_list c)
 
 int _printf(const char * const format, ...)
 {
-	int lenght = 0;
-	int i = 0, y = 0;
+	int i = 0, y = 0, lenght = veriformat(format);
 	st_t stu[] = {
 		{"c", print_char},
 		{"s", print_chare},
 	};
+
 	va_list parametersInfos;
 
 	va_start(parametersInfos, format);
 
-	while (format && format[i] != '\0')
+	while (format != NULL && format[i] != '\0')
 	{
 		if (format[i] == '%')
 		{
