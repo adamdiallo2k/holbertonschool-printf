@@ -74,7 +74,6 @@ int _printf(const char * const format, ...)
 	{
 		if (format[i] == '%')
 		{
-			y = 0;
 			while (stu[y].s)
 			{
 
@@ -82,6 +81,7 @@ int _printf(const char * const format, ...)
 				{
 					lenght = lenght + stu[y].f(parametersInfos);
 					i++;
+					break;
 				}	
 				
 				else if (format[i + 1] == '%')
@@ -89,17 +89,16 @@ int _printf(const char * const format, ...)
 					putchar(format[i + 1]);
 					i++;
 					lenght++;
+					break;
 				}	
 				else if (*stu[y].s == '0')
 				{
 					putchar(format[i]);
 					putchar(format[i + 1]);
 					i++;
-					lenght += 2;
-					}
-			
-				
-					
+					lenght +=2;
+					break;
+				}	
 				y++;
 			}
 		}
