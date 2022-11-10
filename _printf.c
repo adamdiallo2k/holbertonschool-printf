@@ -72,10 +72,19 @@ int _printf(const char * const format, ...)
 
 	while (format != NULL && format[i] != '\0')
 	{
-		if (format[i] == '%')
+	
+			
+		 if (format[i] == '%')
 		{
+		 
+			if (format[i] == '%' && !format[i + 1])
+			{
+				return (-1);
+			}
+
 			while (stu[y].s)
 			{
+
 
 				if (*stu[y].s ==  format[i + 1])
 				{
@@ -102,7 +111,8 @@ int _printf(const char * const format, ...)
 				y++;
 			}
 		}
-		else
+		 
+		else  
 		{
 			putchar(format[i]);
 			lenght++;
