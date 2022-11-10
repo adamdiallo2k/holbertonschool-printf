@@ -1,7 +1,7 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "variadic_function.h"
+#include "main.h"
 #include <unistd.h>
 
 /**
