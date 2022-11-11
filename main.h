@@ -4,7 +4,7 @@
 #include <stdio.h>
 typedef struct st
 {
-	char *s;
+	char s;
 	int (*f)(va_list a);
 	} st_t;
 
