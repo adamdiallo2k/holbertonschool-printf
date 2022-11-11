@@ -22,7 +22,7 @@ int print_chare(va_list c)
 	while (r[i] != '\0')
 	{
 		count++;
-		putchar(r[i]);
+		write(1, &r[i], 1);
 		i++;
 	}
 	return (count);
@@ -38,9 +38,8 @@ int print_char(va_list c)
 {
 	int r = va_arg(c, int);
 
-	putchar(r);
+	return (write(1, &r, 1));
 
-	return (1);
 }
 
 
