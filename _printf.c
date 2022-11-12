@@ -26,7 +26,7 @@ int _putchar(char c)
  */
 int print_int(va_list c)
 {
-	int count;
+	int count = 0;
 	int r = va_arg(c, int);
 	int i;
 
