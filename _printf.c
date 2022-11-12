@@ -4,6 +4,19 @@
 #include "main.h"
 #include <unistd.h>
 #include <stdlib.h>
+#include <limits.h>
+#include <math.h>
+
+/**
+* _putchar - Entry point
+* Description: 'return difference'
+* Return: int
+* @c: char parameter
+*/
+int _putchar(char c)
+{
+	return (write(1, &c, 1));
+}
 
 /**
  * print_int - Entry point
@@ -13,32 +26,27 @@
  */
 int print_int(va_list c)
 {
-	int rm10;
-	int dvsr;
-	int quot;
-	int count = 0;
+	int count;
 	int r = va_arg(c, int);
+	int i;
 
 	if (r < 0)
+		count += _putchar('-');
+	for (i = 1000000000; i > 0; i /= 10)
 	{
-		write(1, "-", 1);
-		count++;
-	}
-	r = abs(r);
-	rm10 = r / 10;
-	dvsr = 1;
-
-	while (dvsr <= rm10)
-		dvsr *= 10;
-
-	while (dvsr)
-	{
-		quot = r / dvsr;
-		quot = quot + '0';
-		write(1, &quot, 1);
-		r %= dvsr;
-		dvsr /= 10;
-		count++;
+		if (r / i)
+		{
+			if ((r / i) % 10 < 0)
+			{
+				count += _putchar(-(r / i % 10) + '0');
+			}
+			else
+			{
+				count += _putchar((r / i % 10) + '0');
+			}
+		}
+		else if (r / i == 0 && i == 1)
+			count += _putchar(r / i % 10 + '0');
 	}
 	return (count);
 }
