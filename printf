@@ -1,0 +1,21 @@
+.\" Manpage for printf.
+.TH man 8 "13 nov 2022" "1.0" "printf man page"
+.SH NAME
+printf \- format and print data 
+.SH SYNOPSIS
+printf FORMAT [ARGUMENT]...
+       printf OPTION
+.SH DESCRIPTION
+Print ARGUMENT(s) according to FORMAT, or execute according to OPTION:
+%%     a single %
+\n     new line
+%i     an decimal integer
+%d     a dedcimal integer
+%c     a char 
+%s     a string
+
+.SH BUGS
+GNU coreutils online help: <https://www.gnu.org/software/coreutils/>
+       Report printf translation bugs to <https://translationproject.org/team/>
+.SH AUTHOR
+Diallo Adam, Bosh Natnael
